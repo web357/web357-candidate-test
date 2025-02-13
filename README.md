@@ -47,12 +47,27 @@ Welcome to the Web357 developer skills assessment! 👋 This is a practical test
     -   💡 Any assumptions or decisions you made
 -   **Important:** Follow [Joomla Coding Standards](https://developer.joomla.org/coding-standards/basic-guidelines.html)
 
-## 🔧 Installation Instructions
+## 🔧 Getting Started
+
+### Fork & Installation Instructions 📥
 
 1. Download and install **Joomla 5.x** from https://downloads.joomla.org/
-2. Clone this repository
-3. Copy the files maintaining the directory structure into your Joomla installation
-4. Install the component through Joomla's Extension Manager
+2. Fork this repository to your GitHub account:
+    - Click the "Fork" button at the top right of this page
+    - Select your GitHub account as the destination
+3. Clone your forked repository to your local machine:
+    ```bash
+    git clone https://github.com/your-username/web357test.git
+    ```
+4. Copy the files maintaining the directory structure into your Joomla installation
+5. Install the component through Joomla's Extension Manager
+
+### Working on the Test 💻
+
+-   Make your changes in your forked repository
+-   Commit regularly with clear messages
+-   Push your changes to your fork
+-   Keep your fork updated if there are any changes to the original repository
 
 ## ✨ Test Requirements
 
@@ -123,4 +138,18 @@ Write tests using **PHP Unit** _or_ **Cypress**:
 -   The package should include both the component and module
 -   All new features should be functional after installation
 
-**_Important Note:_** The final submission should allow us to install the component and module on a fresh Joomla installation to review all implemented changes. Good luck! 🍀
+**_Important Note:_** The final submission should allow us to install the component and module on a fresh Joomla installation to review all implemented changes.
+
+## 📮 Ready to Submit?
+
+When you've completed all the requirements:
+
+1. Ensure your repository is up to date
+2. Double-check your documentation and screenshots
+3. Create your installable ZIP package
+4. Send an email to careers@web357.com with:
+    - Link to your repository
+    - Your installable ZIP file
+    - Any additional notes or explanations
+
+Good luck! 🍀
