@@ -55,12 +55,8 @@ Welcome to the Web357 developer skills assessment! 👋 This is a practical test
 2. Fork this repository to your GitHub account:
     - Click the "Fork" button at the top right of this page
     - Select your GitHub account as the destination
-3. Clone your forked repository to your local machine:
-    ```bash
-    git clone https://github.com/your-username/web357test.git
-    ```
-4. Copy the files maintaining the directory structure into your Joomla installation
-5. Install the component through Joomla's Extension Manager
+3. Copy the files maintaining the directory structure into your Joomla installation
+4. Install the component through Joomla's Extension Manager
 
 ### Working on the Test 💻
 
