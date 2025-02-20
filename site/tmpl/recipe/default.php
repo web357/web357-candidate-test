@@ -62,9 +62,25 @@ if (!$canEdit && Factory::getApplication()->getIdentity()->authorise('core.edit.
 
 			if (!empty($this->item->difficulty) || $this->item->difficulty === 0)
 			{
-				echo Text::_('COM_WEB357TEST_RECIPES_DIFFICULTY_OPTION_' . preg_replace('/[^A-Za-z0-9\_-]/', '',strtoupper(str_replace(' ', '_',$this->item->difficulty))));
+				//echo Text::_('COM_WEB357TEST_RECIPES_DIFFICULTY_OPTION_' . preg_replace('/[^A-Za-z0-9\_-]/', '',strtoupper(str_replace(' ', '_',$this->item->difficulty))));
+				  $difficultyLevels = ["easy" => 1, "medium" => 2, "hard" => 3];
+				    $stars = isset($difficultyLevels[$this->item->difficulty]) ? $difficultyLevels[$this->item->difficulty] : 0;
+
+				    echo '<span class="hidden">' . htmlspecialchars($this->item->difficulty) . '</span>';
+
+				    for ($i = 0; $i < $stars; $i++) {
+				        echo '<i class="fa fa-star" aria-hidden="true" style="color: yellow;"></i>';
+				    }
+						
+						
 			}
 			?></td>
+         <tr>
+			<th><?php echo Text::_('COM_WEB357TEST_FORM_LBL_SERVING_SIZE'); ?></th>
+			<td><?php echo $this->params->get('serving_size'); ?></td>
+		</tr>
+
+		</div>
 		</tr>
 
 	</table>
