@@ -166,6 +166,15 @@ class RecipesModel extends ListModel
 			$query->where('(a.state IN (0, 1))');
 		}
 
+		// Filter by difficulty Level
+		$difficulty = $this->getState('filter.difficulty');
+       
+       if (!empty($difficulty))
+		{
+			$query->where('a.difficulty = ' .$db->Quote($difficulty));
+		}
+
+
 		// Filter by search in title
 		$search = $this->getState('filter.search');
 
