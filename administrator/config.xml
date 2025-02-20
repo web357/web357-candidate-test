@@ -7,7 +7,13 @@
   <option value="medium">Medium</option>
   <option value="hard">Hard</option>
 </field>
-
+    <field name="serving_size" type="list" default="2" label="COM_WEB357TEST_FORM_LBL_SERVING_SIZE" description="COM_WEB357TEST_FORM_DESC_SERVING_SIZE" hint="COM_WEB357TEST_FORM_LBL_SERVING_SIZE">
+      <option value="1-2 servings">JOPTION_SELECT_SERVING_SIZE1</option>
+      <option value="2-4 servings">JOPTION_SELECT_SERVING_SIZE2</option>
+      <option value="4-6 servings">JOPTION_SELECT_SERVING_SIZE3</option>
+      <option value="6-8 servings">JOPTION_SELECT_SERVING_SIZE4</option>
+      <option value="8+ servings">JOPTION_SELECT_SERVING_SIZE5</option>
+    </field>
     </fieldset>
 
     <fieldset name="permissions" description="JCONFIG_PERMISSIONS_DESC" label="JCONFIG_PERMISSIONS_LABEL">
