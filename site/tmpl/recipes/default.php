@@ -46,6 +46,9 @@ $wa->useStyle('com_web357test.list');
 	  name="adminForm" id="adminForm">
 	
 	<div class="table-responsive">
+		<div class="" align="right"><strong><?php echo Text::_('COM_WEB357TEST_FORM_LBL_SERVING_SIZE'); ?>:  <?php echo $this->params->get('serving_size'); ?></strong>
+		</div>
+
 		<table class="table table-striped" id="recipeList">
 			<thead>
 			<tr>
@@ -136,7 +139,17 @@ $wa->useStyle('com_web357test.list');
 						<?php echo $item->cooking_time; ?>
 					</td>
 					<td>
-						<?php echo $item->difficulty; ?>
+					<?php
+				    $difficultyLevels = ["easy" => 1, "medium" => 2, "hard" => 3];
+				    $stars = isset($difficultyLevels[$item->difficulty]) ? $difficultyLevels[$item->difficulty] : 0;
+
+				    echo '<span class="hidden">' . htmlspecialchars($item->difficulty) . '</span>';
+
+				    for ($i = 0; $i < $stars; $i++) {
+				        echo '<i class="fa fa-star" aria-hidden="true" style="color: yellow;"></i>';
+				    }
+				  ?>
+
 					</td>
 					<?php if ($canEdit || $canDelete): ?>
 						<td class="center">
