@@ -71,6 +71,8 @@ $canEdit = Web357testHelper::canUserEdit($this->item, $user);
 
 	<?php echo $this->form->renderField('difficulty'); ?>
 
+    <?php echo $this->form->renderField('serving_size'); ?>
+
 	<?php echo HTMLHelper::_('uitab.endTab'); ?>
 			<div class="control-group">
 				<div class="controls">

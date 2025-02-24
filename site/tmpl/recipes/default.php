@@ -78,6 +78,10 @@ $wa->useStyle('com_web357test.list');
 						<?php echo HTMLHelper::_('grid.sort',  'COM_WEB357TEST_RECIPES_DIFFICULTY', 'a.difficulty', $listDirn, $listOrder); ?>
 					</th>
 
+                    <th class=''>
+                        <?php echo HTMLHelper::_('grid.sort',  'COM_WEB357TEST_RECIPES_SERVING_SIZE', 'a.serving_size', $listDirn, $listOrder); ?>
+                    </th>
+
 						<?php if ($canEdit || $canDelete): ?>
 					<th class="center">
 						<?php echo Text::_('COM_WEB357TEST_RECIPES_ACTIONS'); ?>
@@ -138,6 +142,9 @@ $wa->useStyle('com_web357test.list');
 					<td>
 						<?php echo $item->difficulty; ?>
 					</td>
+                    <td>
+                        <?php echo $item->serving_size; ?>
+                    </td>
 					<?php if ($canEdit || $canDelete): ?>
 						<td class="center">
 							<?php $canCheckin = Factory::getApplication()->getIdentity()->authorise('core.manage', 'com_web357test.' . $item->id) || $item->checked_out == Factory::getApplication()->getIdentity()->id; ?>

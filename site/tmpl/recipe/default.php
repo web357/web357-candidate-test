@@ -67,6 +67,18 @@ if (!$canEdit && Factory::getApplication()->getIdentity()->authorise('core.edit.
 			?></td>
 		</tr>
 
+        <tr>
+            <th><?php echo Text::_('COM_WEB357TEST_FORM_LBL_RECIPE_SERVING_SIZE'); ?></th>
+            <td>
+                <?php
+
+                if (!empty($this->item->serving_size))
+                {
+                    echo Text::_('COM_WEB357TEST_RECIPES_SERVING_SIZE_OPTION_' . preg_replace('/[^A-Za-z0-9\_-]/', '',strtoupper(str_replace(' ', '_',$this->item->serving_size))));
+                }
+                ?></td>
+        </tr>
+
 	</table>
 
 </div>

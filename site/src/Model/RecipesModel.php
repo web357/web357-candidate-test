@@ -52,6 +52,7 @@ class RecipesModel extends ListModel
 				'ingredients', 'a.ingredients',
 				'cooking_time', 'a.cooking_time',
 				'difficulty', 'a.difficulty',
+				'serving_size', 'a.serving_size',
 			);
 		}
 
@@ -173,10 +174,14 @@ class RecipesModel extends ListModel
 					$search = $db->Quote('%' . $db->escape($search, true) . '%');
 				}
 			}
-			
 
-			
-			
+            // Filter by difficulty
+            $difficulty = $this->getState('filter.difficulty');
+            if (!empty($difficulty))
+            {
+                $query->where('a.difficulty = ' . $db->quote($difficulty));
+            }
+
 			// Add the list ordering clause.
 			$orderCol  = $this->state->get('list.ordering', 'a.id');
 			$orderDirn = $this->state->get('list.direction', 'ASC');
@@ -204,6 +209,7 @@ class RecipesModel extends ListModel
 				if (!empty($item->difficulty))
 					{
 						$item->difficulty = Text::_('COM_WEB357TEST_RECIPES_DIFFICULTY_OPTION_' . preg_replace('/[^A-Za-z0-9\_-]/', '',strtoupper(str_replace(' ', '_',$item->difficulty))));
+						$item->serving_size = Text::_('COM_WEB357TEST_RECIPES_SERVING_SIZE_OPTION_' . preg_replace('/[^A-Za-z0-9\_-]/', '',strtoupper(str_replace(' ', '_',$item->serving_size))));
 					}
 		}
 
