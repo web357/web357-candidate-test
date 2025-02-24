@@ -50,6 +50,7 @@ class RecipesModel extends ListModel
 				'ingredients', 'a.ingredients',
 				'cooking_time', 'a.cooking_time',
 				'difficulty', 'a.difficulty',
+				'serving_size', 'a.serving_size',
 			);
 		}
 
@@ -114,6 +115,7 @@ class RecipesModel extends ListModel
 		// Compile the store id.
 		$id .= ':' . $this->getState('filter.search');
 		$id .= ':' . $this->getState('filter.state');
+		$id .= ':' . $this->getState('filter.difficulty');
 
 		
 		return parent::getStoreId($id);
@@ -181,6 +183,13 @@ class RecipesModel extends ListModel
 				
 			}
 		}
+
+        // Filter by difficulty
+        $difficulty = $this->getState('filter.difficulty');
+        if (!empty($difficulty))
+        {
+            $query->where('a.difficulty = ' . $db->quote($difficulty));
+        }
 		
 		// Add the list ordering clause.
 		$orderCol  = $this->state->get('list.ordering', 'id');
@@ -205,7 +214,8 @@ class RecipesModel extends ListModel
 		
 		foreach ($items as $oneItem)
 		{
-					$oneItem->difficulty = !empty($oneItem->difficulty) ? Text::_('COM_WEB357TEST_RECIPES_DIFFICULTY_OPTION_' . preg_replace('/[^A-Za-z0-9\_-]/', '',strtoupper(str_replace(' ', '_',$oneItem->difficulty)))) : '';
+            $oneItem->difficulty = !empty($oneItem->difficulty) ? Text::_('COM_WEB357TEST_RECIPES_DIFFICULTY_OPTION_' . preg_replace('/[^A-Za-z0-9\_-]/', '',strtoupper(str_replace(' ', '_',$oneItem->difficulty)))) : '';
+            $oneItem->serving_size = !empty($oneItem->serving_size) ? Text::_('COM_WEB357TEST_RECIPES_SERVING_SIZE_OPTION_' . preg_replace('/[^A-Za-z0-9\_-]/', '',strtoupper(str_replace(' ', '_',$oneItem->serving_size)))) : '';
 		}
 
 		return $items;

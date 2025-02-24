@@ -163,6 +163,7 @@ class HtmlView extends BaseHtmlView
 			'a.`ingredients`' => Text::_('COM_WEB357TEST_RECIPES_INGREDIENTS'),
 			'a.`cooking_time`' => Text::_('COM_WEB357TEST_RECIPES_COOKING_TIME'),
 			'a.`difficulty`' => Text::_('COM_WEB357TEST_RECIPES_DIFFICULTY'),
+            'a.`serving_size`' => Text::_('COM_WEB357TEST_RECIPES_SERVING_SIZE'),
 		);
 	}
 

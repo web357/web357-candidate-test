@@ -87,6 +87,9 @@ if (!empty($saveOrder))
 						<th class='left'>
 							<?php echo HTMLHelper::_('searchtools.sort',  'COM_WEB357TEST_RECIPES_DIFFICULTY', 'a.difficulty', $listDirn, $listOrder); ?>
 						</th>
+                        <th class='left'>
+                            <?php echo HTMLHelper::_('searchtools.sort',  'COM_WEB357TEST_RECIPES_SERVING_SIZE', 'a.serving_size', $listDirn, $listOrder); ?>
+                        </th>
 						
 					<th scope="col" class="w-3 d-none d-lg-table-cell" >
 
@@ -170,6 +173,9 @@ if (!empty($saveOrder))
 							<td>
 								<?php echo $item->difficulty; ?>
 							</td>
+                            <td>
+                                <?php echo $item->serving_size; ?>
+                            </td>
 							
 							<td class="d-none d-lg-table-cell">
 							<?php echo $item->id; ?>

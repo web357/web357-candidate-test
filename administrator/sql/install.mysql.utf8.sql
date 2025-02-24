@@ -12,6 +12,7 @@ CREATE TABLE IF NOT EXISTS `#__web357test_recipes` (
 `ingredients` VARCHAR(255)  NOT NULL ,
 `cooking_time` DOUBLE NULL ,
 `difficulty` VARCHAR(255)  NULL  DEFAULT "",
+`serving_size` VARCHAR(50)  NULL  DEFAULT "",
 PRIMARY KEY (`id`)
 ,KEY `idx_state` (`state`)
 ,KEY `idx_checked_out` (`checked_out`)

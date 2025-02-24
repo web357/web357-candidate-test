@@ -38,6 +38,7 @@ HTMLHelper::_('bootstrap.tooltip');
 				<?php echo $this->form->renderField('ingredients'); ?>
 				<?php echo $this->form->renderField('cooking_time'); ?>
 				<?php echo $this->form->renderField('difficulty'); ?>
+				<?php echo $this->form->renderField('serving_size'); ?>
 			</fieldset>
 		</div>
 	</div>
