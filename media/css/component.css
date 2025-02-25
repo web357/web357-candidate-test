@@ -1,0 +1,31 @@
+/* Example CSS to style Font Awesome stars */
+.fas.fa-star {
+    display: inline-block;
+    margin-right: 2px;
+	font-size: 0.9rem; /* Adjust star size */
+    color: #ffcc00;    /* Gold color for stars */
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+    clip: rect(0, 0, 0, 0);
+    overflow: hidden;
+}
+
+/* Visually hide text while keeping it accessible to screen readers */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+

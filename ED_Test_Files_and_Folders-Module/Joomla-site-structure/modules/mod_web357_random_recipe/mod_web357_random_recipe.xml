@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="4.0" client="site" method="upgrade">
+    <name>RANDOM_RECIPE</name>
+    <author>Efthymios Drivas</author>
+    <version>1.0.0</version>
+    <description>RANDOM_RECIPE_DESC</description>
+    <files>
+        <filename module="mod_web357_random_recipe">mod_web357_random_recipe.php</filename>
+        <filename>helper.php</filename>
+        <folder>tmpl</folder>
+        <folder>language</folder>
+    </files>
+    <languages>
+        <language tag="en-GB">language/en-GB/mod_web357_random_recipe.ini</language>
+		<language tag="el-GR">language/en-GB/mod_web357_random_recipe.ini</language>
+    </languages>
+</extension>

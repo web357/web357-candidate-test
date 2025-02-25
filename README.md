@@ -1,151 +1,209 @@
 # 🚀 Web357 Test Component - Developer Skills Assessment
 
-Welcome to the Web357 developer skills assessment! 👋 This is a practical test designed to evaluate your understanding of Joomla component and module development. You'll be working with a basic recipes component and implementing new features, modifying existing functionality, and creating a complementary module.
+Welcome to the informational file of your updated component. Hereafter you will find the following sections:
+    -  1. ✨ Installation instructions
+    -  2. 📋 Changelog of modifications
+    -  3. 🖼️ Screenshots of new features
+    -  4. 🔍 How to test changes
+    -  5. 💡 Any assumptions or decisions made
+	
+### 1. ✨ Installation instructions
 
-## 📝 Development Requirements
+	Follow the numbered steps to install the component, which you obtained.
 
-### 1. Version Control ⭐
+	# 1.1 
+	Download the main component folder. Inside you will find all the related folder and files, as below:
+		- forms
+		- src
+		- tmpl
+		- ReadMe.md
+	# 1.2
+	Create a .zip file.  
+		Keep all files maintaining the directory structure, do not ommit or alter anything.
+	
+	# 1.3
+	Log in to your Joomla Administrator Panel - Upload and Install
 
--   Create **descriptive commit messages** that clearly explain your changes
--   Make _frequent, atomic commits_ for each logical change
--   ✨ Example of good commit messages:
+		- Go to Joomla Admin Panel (https://yourdomain/administrator/)
+		- Locate the LH side menu, expand, if necessary.
+		- Navigate to System 
+		- Locate the Update section. Click on the Extensions 
+		- Click on the Manage Extensions button
+		- Click on Install Extensions
+		- Click Upload Package File and press on the green button "browse for file"
+		- Browse and locate the correct component, select your component and open the component's .zip
+		- Click Install
+		- At the LH side of the main Dashboard-menu, select the "All Menus Items" option to visualize, on the front-end menu, your new componet
+		- Press on the Select blue button, to add the component's url, check for the correct name
+				
+	
+#  2. 📋 Changelog of modifications
+		
+		#  2.1 Added serving size parameter with configuration and display
+		
+			- Added field name="serving_size" to recipeform.xml
+		
+		#  2.2 DB Queries
+		
+			- Run the following SQL query to find the component’s entry name (=com_web357test):
+				SELECT * FROM `j532_extensions` WHERE type = 'component' AND element LIKE '%357%';
+				
+		#  2.3 Database modification
+		
+			// Created new database column for storing serving sizes
+				- ALTER TABLE `j532_web357test_recipes` ADD `serving_size` VARCHAR(100) NOT NULL DEFAULT '2-4 servings';
+			// Verification of the ALTER TABLE query
+				- SHOW COLUMNS FROM `j532_web357test_recipes` WHERE Field = 'serving_size'; 
+		    // Created new params, for the default value
+				- UPDATE j532_extensions SET params = '{"save_history":"0", "serving_size":"2-4 servings"}' WHERE element = 'com_web357test' AND type = 'component';
+			
+		#  2.4 Implementation of display logic
+		
+			// Implemented display logic
+			
+				- Frontend Files (Site Components)
+					yourjoomlasite\components\com_web357test\tmpl\recipeform\default.php
+					yourjoomlasite\components\com_web357test\tmpl\recipes\default.php
+					yourjoomlasite\components\com_web357test\tmpl\recipe\default.php
+				- Views
+					yourjoomlasite\components\com_web357test\src\View\Recipes\HtmlView.php
 
-    ```
-    // Good commit message example: ✅
-    Add serving size parameter with configuration and display
+				- Administrator Files (Backend Components)
+					Model
+						yourjoomlasite\administrator\components\com_web357test\src\Model\RecipesModel.php
+					Forms
+						yourjoomlasite\administrator\components\com_web357test\forms\filter_recipes.xml
+						yourjoomlasite\administrator\components\com_web357test\forms\recipe.xml
+					Admin Views and Templates
+						yourjoomlasite\administrator\components\com_web357test\tmpl\recipes\default.php
+						yourjoomlasite\administrator\components\com_web357test\tmpl\recipe\default.php
+						yourjoomlasite\administrator\components\com_web357test\tmpl\recipe\edit.php
 
-    - Added serving_size field to configuration.xml
-    - Created new database column for storing serving sizes
-    - Implemented display logic in site/tmpl/recipe/default.php
-    - Added filter options in administrator/components/list.php
-    - Updated language files with new strings
+				
+		#  2.5 Language Updates	
+		
+			// Updated language files with new strings: yourjoomlasite\language\el-GR\com_web357test.ini					
+			// Updated language files with new strings: yourjoomlasite\language\en-GB\com_web357test.ini			
+			// Updated language files with new strings: yourjoomlasite\administrator\language\en-GB\com_web357test.ini						
+			// Updated language files with new strings: yourjoomlasite\administrator\language\el-GR\com_web357test.ini
+			
+			
+		#  2.6 Fixed the following issue/es
+			
+				// Modification of yourjoomlasite\components\com_web357test\src\Model\RecipeformModel.php
+				
+					- Warning: Attempt to read property "difficulty" on array in yourjoomlasite\components\com_web357test\src\Model\RecipeformModel.php, line 297
+					- modified : protected function loadFormData()
+		
+		#  2.7 Backend functionality for difficulty filter	
+				
+			// Adjusted Backend functionality
+			
+				- Modified the relative td element at yourjoomlasite\administrator\components\com_web357test\tmpl\recipes\default.php
+				- Modified the relative form element at yourjoomlasite\administrator\components\com_web357test\forms\recipe.xml
+				- Replaced text-based difficulty with Font Awesome icons
+				- Added aria-labels for screen readers
+				- Included hidden text for accessibility
+				- Updated CSS for icon spacing and alignment yourjoomlasite\components\com_web357test\media\css\component.css
 
-    // Another good commit example: ✅
-    Update difficulty icons with accessibility improvements
+			// Modified files:	
+				yourjoomlasite\components\com_web357test\tmpl\recipes\default.php
+				yourjoomlasite\components\com_web357test\tmpl\recipe\default.php
+				yourjoomlasite\administrator\components\com_web357test\tmpl\recipes\default.php
+				yourjoomlasite\administrator\components\com_web357test\forms\recipe.xml
+				yourjoomlasite\components\com_web357test\forms\recipeform.xml
+				
+		#  2.8 Random Recipe Module 
 
-    - Replaced text-based difficulty with Font Awesome icons
-    - Added aria-labels for screen readers
-    - Included hidden text for accessibility
-    - Updated CSS for icon spacing and alignment
-    - Added tooltip on hover for better UX
+			#  2.8.1 Random Recipe Module Architecture
+			// Creation of the correct folder/files under yourjoomlasite/modules, like the structure schema hereafter:
+			
+				joomla_root/
+				├── components/
+				│   └── com_web357test/          # custom component
+				└── modules/
+				    └── mod_web357_random_recipe/ # custom module
+				        ├── mod_web357_random_recipe.php
+				        ├── helper.php
+				        ├── tmpl/
+						│ 	 └─default.php
+						│											
+				        ├── language/
+						│ 		├──en-GB
+						│ 		└──el-GR					
+				        └── mod_web357_random_recipe.xml
+				
+			//	Adjustment of the language files, under each language folder, with the correct translations
+			
+			#  2.8.2 Install the Module in Joomla
 
-    // Bad commit message example: ❌
-    updates
+				// Log in to Joomla Admin:
+					- Access your Joomla admin panel (e.g., http://yourjoomlasite.com/administrator).
+					- Go to the Extension Manager:
+					- In the Joomla admin panel, navigate to System > Install > Extensions > Manage Extensions > Install.
 
-    // Another bad commit message: ❌
-    fixed some stuff
-    ```
+				// Upload the Module Zip File:
 
-### 2. Documentation 📚
+					- Click the Upload Package File tab.
+					- Click Choose File and select the mod_web357_random_recipe.zip file from your computer.
+					- Click Upload & Install.
 
--   Create/update the README.md file in your repository
--   Your README.md should include:
-    -   ✨ Installation instructions
-    -   📋 Changelog of your modifications
-    -   🖼️ Screenshots of new features
-    -   🔍 How to test your changes
-    -   💡 Any assumptions or decisions you made
--   **Important:** Follow [Joomla Coding Standards](https://developer.joomla.org/coding-standards/basic-guidelines.html)
+				// Verify Installation:
 
-## 🔧 Getting Started
+					If the installation is successful, you’ll see a message like "Installation of the module was successful."
 
-### Fork & Installation Instructions 📥
+			#  2.8.3 Enable and Configure the Module
 
-1. Download and install **Joomla 5.x** from https://downloads.joomla.org/
-2. Fork this repository to your GitHub account:
-    - Click the "Fork" button at the top right of this page
-    - Select your GitHub account as the destination
-3. Copy the files maintaining the directory structure into your Joomla installation
-4. Install the component through Joomla's Extension Manager
+				// Go to the Module Manager:
+					- Navigate to System > Manage Extensions > Modules.
 
-### Working on the Test 💻
+				// Find the Module, (LH Menu) Content -> Site modules -> New (button):
+					- Look for the "RANDOM_RECIPE" module in the masonry-style list.
 
--   Make your changes in your forked repository
--   Commit regularly with clear messages
--   Push your changes to your fork
--   Keep your fork updated if there are any changes to the original repository
+				// Enable the Module:
+					- If the module is not already enabled, click the red circle under the "Status" column to enable it.
 
-## ✨ Test Requirements
+				// Configure the Module:
+					- Click on the module name to open its settings.
+					- Set the Module Position (e.g., sidebar).
+					- Configure the Menu Assignment to determine where the module should appear (e.g., on all pages, only on the home page, etc.).
+					- Save the changes.
+					
+				//  Adjustment of the module title
+				    - Navigate through the LH Dashboard Menu -> Go Content -> Site Modules and press on the relevant Module.
+					- Adjust the front view title of the module by typing in the title element, then save.
 
-### 1. Component Parameters 🎛️
+			#  2.8.3.4  Test the Module
 
--   Add a new parameter "_serving_size_" (type="list") with options:
-    -   1-2 servings
-    -   2-4 servings
-    -   4-6 servings
-    -   6-8 servings
-    -   8+ servings
+				// Visit the Frontend:
+					- Go to your Joomla site’s frontend (e.g., http://yourjoomlasite.com).
 
-### 2. Frontend Display 🎨
+				// Check the Module:
+					- Verify that the module appears in the assigned position (e.g., "sidebar").
+					- Reload the page to see a new random recipe.
 
--   Currently, difficulty levels are shown as plain text ("easy", "medium", "hard")
--   **Task:** Replace the text with Font Awesome icons:
-    -   Easy: One icon ⭐
-    -   Medium: Two icons ⭐⭐
-    -   Hard: Three icons ⭐⭐⭐
--   You can choose any appropriate Font Awesome icon
--   _Important:_ Ensure accessibility by keeping the text in a hidden label
--   Display serving size in both recipe list and single recipe views
+				// Click the Link:
+					- Click the "View Full Recipe" link to ensure it redirects to the correct recipe page.
 
-### 3. Backend Functionality ⚙️
+			#  2.8.3.5 Optional - Add Sample Data
 
--   Add a filter dropdown in the backend recipes list to filter by difficulty level (easy/medium/hard)
--   The filter should:
-    -   Be located in the filters toolbar above the recipes list
-    -   Allow filtering recipes by each difficulty level
-    -   Remember the selected filter state
-    -   Clear when "Clear" button is clicked
+				// If your com_web357test component is not installed or doesn’t have any recipes, you’ll need to:
 
-### 4. Module Development 📦
+					- Install the Component:
+						- Ensure the com_web357test component is installed and working.
+						- If not, install it using the same process as the module.
 
--   Create a new module (`mod_web357_random_recipe`)
--   Display one random recipe on each page reload
--   Include basic recipe details (title, difficulty icons, serving size)
--   Add a link to the full recipe
+					- Add Recipes:
+						- Go to the backend of your Joomla site.
+						- Navigate to Components > Web357test.
+						- Add a few recipes with titles, difficulty levels, and serving sizes.
 
-### 5. Testing 🧪
+			#  2.8.3.6 Final Notes
 
-Write tests using **PHP Unit** _or_ **Cypress**:
+				// Database Table: Ensure the #__web357test_recipes table exists and contains data. If not, the module won’t have any recipes to display.
 
--   Test the recipe filtering function by difficulty level
--   Test the random recipe selection in the module
--   _Choose either:_
-    -   🔍 **PHP Unit:** Write unit tests for the component and module functions
-    -   🔄 **Cypress:** Create end-to-end tests for the frontend functionality
-
-## 📤 Submission Requirements
-
-### 1. Repository 📁
-
--   Provide access to your Git repository
--   Ensure the repository includes all commits showing your development process
-
-### 2. Documentation 📝
-
--   Updated README.md with:
-    -   📋 Changelog detailing all modifications
-    -   🖼️ Screenshots of new features
-    -   📥 Installation instructions
-    -   ✅ Testing instructions
-
-### 3. Installable Package 📦
-
--   Provide a ZIP file that can be installed through Joomla's Extension Manager
--   The package should include both the component and module
--   All new features should be functional after installation
-
-**_Important Note:_** The final submission should allow us to install the component and module on a fresh Joomla installation to review all implemented changes.
-
-## 📮 Ready to Submit?
-
-When you've completed all the requirements:
-
-1. Ensure your repository is up to date
-2. Double-check your documentation and screenshots
-3. Create your installable ZIP package
-4. Send an email to careers@web357.com with:
-    - Link to your repository
-    - Your installable ZIP file
-    - Any additional notes or explanations
-
-Good luck! 🍀
+				// Language Files: If you’re using a language other than English or Greek, make sure to add the corresponding language files.
+    
+			#  3. 🖼️ Screenshots of new features
+			
+				// screenshots are include seperately, in the uploaded folder named "test-screenshots"
